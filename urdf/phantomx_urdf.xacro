@@ -9,7 +9,18 @@
 <xacro:property name="thigh_color" value="Gazebo/Blue" />
 
 <xacro:macro name="phantomx" params="parent *origin">
-
+  <gazebo>
+      <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>ground_truth/state</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
 
       <joint name="j_phantomx_attachment" type="fixed">
         <parent link="${parent}"/>
